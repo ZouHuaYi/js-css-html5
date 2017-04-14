@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html,body{
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+        #box{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transition: 1s;
+        }
+        .div1{
+            background: darkorchid;
+        }
+        .div2{
+            background: yellowgreen;
+        }
+        .div3{
+            background: orange;
+        }
+        .div4{
+            background: turquoise;
+        }
+        #nav{
+            width: 50px;
+            height: 240px;
+            position: fixed;
+            right: 20px;
+            bottom: 30px;
+        }
+        #nav span{
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin-top: 10px;
+            background: #CCCCCC;
+        }
+        #nav .active{
+            background: red;
+        }
+    </style>
+    <script type="text/javascript" src="../js/wheelevent.js"></script>
+</head>
+<body>
+<div id="box">
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    <p id="nav"></p>
+</div>
+</body>
+<script type="text/javascript">
+    var bo=document.getElementById("box");
+    var oDiv=bo.getElementsByTagName("div");
+    var oNav=document.getElementById("nav");
+    var iw=document.documentElement.clientWidth;
+    var ih=document.documentElement.clientHeight;
+    var num=0;
+    var onoff=true;
+    for(var i=0;i<oDiv.length;i++) {
+        oDiv[i].style.width = iw + "px";
+        oDiv[i].style.height = ih + "px";
+        var ospan = document.createElement("span");
+        ospan.index=i;
+        oNav.appendChild(ospan);
+        addEvent(ospan, "click", function(){
+            spanClick(this.index);
+            num=-this.index;
+        })
+    }
+    addWheel(document,downFn,upFn);
+    function downFn(){
+        if(onoff){
+            num--;
+            if(-num>oDiv.length-1){
+                num=1-oDiv.length;
+            }
+            del(-num)
+            bo.style.top=num*ih+"px";
+            onoff=!onoff;
+            setTimeout(function(){
+                onoff=!onoff;
+            },1000)
+        }
+
+    }
+
+    function upFn(){
+        if(onoff){
+            num++;
+            if(num>0){
+                num=0;
+            }
+            del(-num)
+            bo.style.top=num*ih+"px";
+            onoff=!onoff;
+            setTimeout(function(){
+                onoff=!onoff;
+            },1000)
+        }
+    }
+
+    var ospan=oNav.getElementsByTagName("span");
+         ospan[0].className="active";
+    function del(index){
+        for(var i=0;i<ospan.length;i++){
+            ospan[i].className="";
+        }
+        ospan[index].className="active";
+    }
+
+    function spanClick(a){
+        for(var i=0;i<ospan.length;i++){
+            ospan[i].className="";
+        }
+       ospan[a].className="active";
+        bo.style.top=-a*ih+"px";
+        console.log(a)
+    }
+
+
+</script>
+</html>

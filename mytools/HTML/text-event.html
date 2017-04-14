@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box{
+            width: 200px;
+            height: 300px;
+            margin: 300px;
+            background: red;
+            position: absolute;
+            border: 10px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+
+</body>
+<script type="text/javascript">
+    window.onload=function() {
+        function removeEvent(obj, type, fn) {
+            if (obj.removeEventListener) {
+                obj.removeEventListener(type, fn);
+            } else if (obj.detachEvent) {
+                obj.detachEvent("on" + type, fn);
+            }
+        }
+
+        function addEvent(obj, type, fn, boolean) {
+            var boo = boolean || false;
+            if (obj.addEventListener) {
+                obj.addEventListener(type, fn, boo);
+            } else if (obj.attachEvent) {
+                obj.attachEvent("on" + type, fn);
+            }
+        }
+
+        var o=document.getElementById("box");
+        var x= o.getBoundingClientRect().width;//包括了边框的存在。不兼容ie8以下的版本
+        var s= o.offsetWidth;   //包括了边框绝对的宽度 兼容好
+        var a= o.clientWidth;   //只是自身的宽度没有包括边框。兼容好   只是没有边框的存在而已其他的没有什么区别。
+        console.log(x,s,a);
+
+
+
+
+    }
+</script>
+</html>

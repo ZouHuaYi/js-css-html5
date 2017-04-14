@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box{
+            width: 100px;
+            height: 100px;
+            background: darkred;
+        }
+    </style>
+    <script type="text/javascript" src="../js/event.js"></script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+<script type="text/javascript">
+    window.onload=function(){
+
+        var bo=document.getElementById("box")
+        EventUtil.addHandler(bo,"click",rr)
+
+        function rr(){
+            console.log(111)
+        }
+
+//        EventUtil.addHandler(bo,"mousemove",function(){
+//            var s=EventUtil.getEvent();
+//            console.log(s.clientX)
+//        })
+
+        EventUtil.addHandler(bo,"mouseleave",function(){
+            EventUtil.removeHandsler(bo,"click",rr)
+        })
+
+    }
+</script>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #box{
+            width: 400px;
+            height: 500px;
+            margin: 20px auto;
+            border: 1px solid #000000;
+            overflow: hidden;
+            position: relative;
+        }
+        #luo{
+            width: 20px;
+            height: 100%;
+            background: greenyellow;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+        #move{
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            width: 20px;
+            height: 40px;
+            background: red;
+        }
+        #context{
+            width: 380px;
+            position: absolute;
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="luo">
+        <div id="move"></div>
+    </div>
+    <div id="context">
+        正则表达式的“鼻祖”或许可一直追溯到科学家对人类神经系统工作原理的早期研究。美国新泽西州的Warren McCulloch和出生在美国底特律的Walter Pitts这两位神经生理方面的科学家，研究出了一种用数学方式来描述神经网络的新方法，他们创造性地将神经系统中的神经元描述成了小而简单的自动控制元，从而作出了一项伟大的工作革新。
+        在1951 年,一位名叫Stephen Kleene的数学科学家，他在Warren McCulloch和Walter Pitts早期工作的基础之上，发表了一篇题目是《神经网事件的表示法》的论文，利用称之为正则集合的数学符号来描述此模型，引入了正则表达式的概念。正则表达式被作为用来描述其称之为“正则集的代数”的一种表达式，因而采用了“正则表达式”这个术语。
+        之后一段时间，人们发现可以将这一工作成果应用于其他方面。Ken Thompson就把这一成果应用于计算搜索算法的一些早期研究，Ken Thompson是 Unix的主要发明人，也就是大名鼎鼎的Unix之父。Unix之父将此符号系统引入编辑器QED，然后是Unix上的编辑器ed，并最终引入grep。Jeffrey Friedl 在其著作《Mastering Regular Expressions (2nd edition)》（中文版译作：精通正则表达式，已出到第三版）中对此作了进一步阐述讲解，如果你希望更多了解正则表达式理论和历史，推荐你看看这本书。
+        自此以后，正则表达式被广泛地应用到各种UNIX或类似于UNIX的工具中，如大家熟知的Perl。Perl的正则表达式源自于Henry Spencer编写的regex，之后已演化成了pcre（Perl兼容正则表达式Perl Compatible Regular Expressions），pcre是一个由Philip Hazel开发的、为很多现代工具所使用的库。正则表达式的第一个实用应用程序即为Unix中的 qed 编辑器。
+        然后，正则表达式在各种计算机语言或各种应用领域得到了广大的应用和发展，演变成为计算机技术森林中的一只形神美丽且声音动听的百灵鸟。
+        以上是关于正则表达式的起源和发展的历史描述，如今正则表达式在基于文本的编辑器和搜索工具中依然占据着一个非常重要的地位。
+        在最近的六十年中，正则表达式逐渐从模糊而深奥的数学概念，发展成为在计算机各类工具和软件包应用中的主要功能。不仅仅众多UNIX工具支持正则表达式，近二十年来，在WINDOWS的阵营下，正则表达式的思想和应用在大部分 Windows 开发者工具包中得到支持和嵌入应用！从正则式在Microsoft Visual Basic 6 或 Microsoft VBScript到.NET Framework中的探索和发展，WINDOWS系列产品对正则表达式的支持发展到无与伦比的高度，几乎所有 Microsoft 开发者和所有.NET语言都可以使用正则表达式。如果你是一位接触计算机语言的工作者，那么你会在主流操作系统（*nix[Linux, Unix等]、Windows、HP、BeOS等）、主流的开发语言（delphi、Scala、PHP、C#、Java、C++、Objective-c、Swift、VB、Javascript、Ruby以及Python等）、数以亿万计的各种应用软件中，都可以看到正则表达式优美的舞姿。
+        概念编辑
+        正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。
+        给定一个正则表达式和另一个字符串，我们可以达到如下的目的：
+        1. 给定的字符串是否符合正则表达式的过滤逻辑（称作“匹配”）；
+        2. 可以通过正则表达式，从字符串中获取我们想要的特定部分。
+        正则表达式的特点是：
+        1. 灵活性、逻辑性和功能性非常的强；
+        2. 可以迅速地用极简单的方式达到字符串的复杂控制。
+        3. 对于刚接触的人来说，比较晦涩难懂。
+        由于正则表达式主要应用对象是文本，因此它在各种文本编辑器场合都有应用，小到著名编辑器EditPlus，大到Microsoft Word、Visual Studio等大型编辑器，都可以使用正则表达式来处理文本内容。
+        引擎编辑
+        正则引擎主要可以分为两大类：一种是DFA，一种是NFA。这两种引擎都有了很久的历史(至今二十多年)，当中也由这两种引擎产生了很多变体！于是POSIX的出台规避了不必要变体的继续产生。这样一来，主流的正则引擎又分为3类：一、DFA，二、传统型NFA，三、POSIX NFA。
+        DFA 引擎在线性时状态下执行，因为它们不要求回溯（并因此它们永远不测试相同的字符两次）。DFA 引擎还可以确保匹配最长的可能的字符串。但是，因为 DFA 引擎只包含有限的状态，所以它不能匹配具有反向引用的模式；并且因为它不构造显示扩展，所以它不可以捕获子表达式。
+        传统的 NFA 引擎运行所谓的“贪婪的”匹配回溯算法，以指定顺序测试正则表达式的所有可能的扩展并接受第一个匹配项。因为传统的 NFA 构造正则表达式的特定扩展以获得成功的匹配，所以它可以捕获子表达式匹配和匹配的反向引用。但是，因为传统的 NFA 回溯，所以它可以访问完全相同的状态多次（如果通过不同的路径到达该状态）。因此，在最坏情况下，它的执行速度可能非常慢。因为传统的 NFA 接受它找到的第一个匹配，所以它还可能会导致其他（可能更长）匹配未被发现。
+        POSIX NFA 引擎与传统的 NFA 引擎类似，不同的一点在于：在它们可以确保已找到了可能的最长的匹配之前，它们将继续回溯。因此，POSIX NFA 引擎的速度慢于传统的 NFA 引擎；并且在使用 POSIX NFA 时，您恐怕不会愿意在更改回溯搜索的顺序的情况下来支持较短的匹配搜索，而非较长的匹配搜索。
+        使用DFA引擎的程序主要有：awk,egrep,flex,lex,MySQL,Procmail等；
+        使用传统型NFA引擎的程序主要有：GNU Emacs,Java,ergp,less,more,.NET语言,PCRE library,Perl,PHP,Python,Ruby,sed,vi；
+        使用POSIX NFA引擎的程序主要有：mawk,Mortice Kern Systems’ utilities,GNU Emacs(使用时可以明确指定)；
+        也有使用DFA/NFA混合的引擎：GNU awk,GNU grep/egrep,Tcl。
+        举例简单说明NFA与DFA工作的区别：
+        正则引擎主要可以分为两大类：一种是DFA，一种是NFA。这两种引擎都有了很久的历史(至今二十多年)，当中也由这两种引擎产生了很多变体！于是POSIX的出台规避了不必要变体的继续产生。这样一来，主流的正则引擎又分为3类：一、DFA，二、传统型NFA，三、POSIX NFA。
+        DFA 引擎在线性时状态下执行，因为它们不要求回溯（并因此它们永远不测试相同的字符两次）。DFA 引擎还可以确保匹配最长的可能的字符串。但是，因为 DFA 引擎只包含有限的状态，所以它不能匹配具有反向引用的模式；并且因为它不构造显示扩展，所以它不可以捕获子表达式。
+        传统的 NFA 引擎运行所谓的“贪婪的”匹配回溯算法，以指定顺序测试正则表达式的所有可能的扩展并接受第一个匹配项。因为传统的 NFA 构造正则表达式的特定扩展以获得成功的匹配，所以它可以捕获子表达式匹配和匹配的反向引用。但是，因为传统的 NFA 回溯，所以它可以访问完全相同的状态多次（如果通过不同的路径到达该状态）。因此，在最坏情况下，它的执行速度可能非常慢。因为传统的 NFA 接受它找到的第一个匹配，所以它还可能会导致其他（可能更长）匹配未被发现。
+        POSIX NFA 引擎与传统的 NFA 引擎类似，不同的一点在于：在它们可以确保已找到了可能的最长的匹配之前，它们将继续回溯。因此，POSIX NFA 引擎的速度慢于传统的 NFA 引擎；并且在使用 POSIX NFA 时，您恐怕不会愿意在更改回溯搜索的顺序的情况下来支持较短的匹配搜索，而非较长的匹配搜索。
+        使用DFA引擎的程序主要有：awk,egrep,flex,lex,MySQL,Procmail等；
+        使用传统型NFA引擎的程序主要有：GNU Emacs,Java,ergp,less,more,.NET语言,PCRE library,Perl,PHP,Python,Ruby,sed,vi；
+        使用POSIX NFA引擎的程序主要有：mawk,Mortice Kern Systems’ utilities,GNU Emacs(使用时可以明确指定)；
+        也有使用DFA/NFA混合的引擎：GNU awk,GNU grep/egrep,Tcl。正则引擎主要可以分为两大类：一种是DFA，一种是NFA。这两种引擎都有了很久的历史(至今二十多年)，当中也由这两种引擎产生了很多变体！于是POSIX的出台规避了不必要变体的继续产生。这样一来，主流的正则引擎又分为3类：一、DFA，二、传统型NFA，三、POSIX NFA。
+        DFA 引擎在线性时状态下执行，因为它们不要求回溯（并因此它们永远不测试相同的字符两次）。DFA 引擎还可以确保匹配最长的可能的字符串。但是，因为 DFA 引擎只包含有限的状态，所以它不能匹配具有反向引用的模式；并且因为它不构造显示扩展，所以它不可以捕获子表达式。
+        传统的 NFA 引擎运行所谓的“贪婪的”匹配回溯算法，以指定顺序测试正则表达式的所有可能的扩展并接受第一个匹配项。因为传统的 NFA 构造正则表达式的特定扩展以获得成功的匹配，所以它可以捕获子表达式匹配和匹配的反向引用。但是，因为传统的 NFA 回溯，所以它可以访问完全相同的状态多次（如果通过不同的路径到达该状态）。因此，在最坏情况下，它的执行速度可能非常慢。因为传统的 NFA 接受它找到的第一个匹配，所以它还可能会导致其他（可能更长）匹配未被发现。
+        POSIX NFA 引擎与传统的 NFA 引擎类似，不同的一点在于：在它们可以确保已找到了可能的最长的匹配之前，它们将继续回溯。因此，POSIX NFA 引擎的速度慢于传统的 NFA 引擎；并且在使用 POSIX NFA 时，您恐怕不会愿意在更改回溯搜索的顺序的情况下来支持较短的匹配搜索，而非较长的匹配搜索。
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../js/wheelevent.js"></script>
+<script type="text/javascript">
+    window.onload=function(){
+        var obox=document.getElementById("box");
+        var oluo=document.getElementById("luo");
+        var omove=document.getElementById("move");
+        var otext=document.getElementById("context");
+        var ot=otext.offsetHeight-obox.offsetHeight;//这是计算文档的高度
+        var h=omove.offsetHeight;  //滑块的高度
+        var hs=obox.offsetHeight-h;  //滑块运动的最大距离
+        var num=0;
+        addEvent(omove,"mousedown",function(){  //鼠标按下事件
+            addEvent(document,"mousemove",move);  //鼠标移动事件
+            addEvent(document,"mouseup",function fn(){  //抬起事件事件解绑
+                removeEvent(document,"mousemove",move);
+                removeEvent(document,"mouseup",fn);
+            });
+        });
+        addWheel(obox,wheelDown,wheelUp);  //滚轮事件的封装函数
+        function wheelDown(){              //滚轮向下滚动的函数
+            num-=10;
+            if(num<-ot){
+               num=-ot;
+            }
+            var pi=-num/ot.toFixed(2);   //计算出滚动的比例
+            omove.style.top=pi*hs+"px";  //滑块滑行的距离
+            otext.style.top=num+"px";    //文档走过的距离
+            stopDefault();               //阻止默认事件
+    }
+        function wheelUp(){
+            num+=10;
+            if(num>0){
+                num=0;
+            }
+            var pi=-num/ot.toFixed(3);
+            omove.style.top=pi*hs+"px";
+            otext.style.top=num+"px";
+            stopDefault();
+        }
+        function move(e){
+            var e=e || window.event;
+            var disY= e.clientY-obox.offsetTop-h/2;   //鼠标相对父级的定位
+            var tops= e.clientY-obox.getBoundingClientRect().top;   //最大的高度
+            var bots= obox.getBoundingClientRect().bottom-e.clientY; //最小的高度
+            if(tops<h){
+                omove.style.top=0+"px";
+            }else{
+                omove.style.top=disY+"px";
+            }
+            if(bots<h){
+                omove.style.top=hs+"px";
+            }
+            var pis=omove.offsetTop/hs.toFixed(2);  //这是求出比例出来
+            otext.style.top=-pis*ot+"px";         //文档走过的高度
+            num=-pis*ot;                      //求出num给滚轮事件做准备的。
+            stopDefault();
+        }
+
+
+    }
+</script>
+</html>
